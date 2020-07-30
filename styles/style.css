@@ -80,8 +80,8 @@ a:visited {
     max-width: 1350px; } }
 .sidebarNav {
   position: static;
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 300px;
+  max-width: 300px;
   padding: 60px 30px;
   margin: 0 15px;
   border: 1px solid #2c2c23;
@@ -129,12 +129,12 @@ a:visited {
   padding: 45px;
   border: 1px solid #fff2da;
   border-radius: 0.2em;
-  max-width: 200px;
+  max-width: 300px;
   transition: ease all .3s; }
 
 @media only screen and (min-width: 700px) {
   .card {
-    width: 200px; } }
+    width: 300px; } }
 .card:hover {
   transform: translateY(-5px);
   background: #fff2da;

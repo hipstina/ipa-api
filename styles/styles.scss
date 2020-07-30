@@ -127,8 +127,8 @@ a:visited {
 
 .sidebarNav {
     position: static;
-    min-width: 200px;
-    max-width: 200px;
+    min-width: 300px;
+    max-width: 300px;
     padding: 60px 30px;
     margin: 0 15px;
     border: 1px solid rgb(44,44,35);
@@ -208,14 +208,14 @@ a:visited {
     border: 1px solid #fff2da;
     // box-shadow: 1px 4px 6px #a06700;
     border-radius:  .2em ;
-    max-width: 200px;
+    max-width: 300px;
     transition: ease all .3s;
     
 }
 
 @media only screen and (min-width: 700px) {
     .card {
-        width: 200px;
+        width: 300px;
     }
 }
 
