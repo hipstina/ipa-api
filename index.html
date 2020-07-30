@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- LANGUAGE -->
+<html lang="en">
+  <head> 
+    <!-- CHARACTER ENCODING -->
+    <meta charset="utf-8" />
+
+    <!-- MOBILE-OPTIMIZED -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- IE BROWSER COMPATIBILITY -->
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+
+    <!-- GENERAL -->
+    <meta name="description" content="Christina Padilla is a front-end developer that makes beautiful accessible user interfaces"/>
+    <meta name="author" content="Christina Padilla">
+
+    <!-- FACEBOOK -->
+    <meta property="og:title" content="Home"/>
+    <meta property="og:description" content="Christina Padilla is a front-end developer that makes beautiful accessible user interfaces"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" /> 
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@hipstina"/>
+    <meta name="twitter:title" content="Home"/>
+    <meta name="twitter:description" content="Christina Padilla is a front-end developer that makes beautiful accessible user interfaces"/>
+
+    <!-- TITLE -->
+    <title>Christina Padilla • Front-end Developer • Chicago, IL</title>
+
+    <!-- STYLES ( CSS | CSS minified | SCSS | Normalize/Reset ) -->
+    <link rel="stylesheet" href="styles/normalize.scss">
+    <link rel="stylesheet" href="styles/styles.scss">
+    
+    
+    <!-- FAVICONS ( .ico | .gif | .png )-->
+    <link rel="shortcut icon" sizes="" href="">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- FONTS ( web-safe | serif | sans-serif ) -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"> 
+
+  </head>
+
+  <!-- main structure -->
+  <body >
+    
+  <!-- navigation and header content -->
+  <header>
+    <nav >
+      <ul class="mainNav">
+        <li class="navItem"><i class="fa fa-search" aria-hidden="true"></i></li>
+        <li class="navItem"><i class="fa fa-random" aria-hidden="true"></i></li>
+        <li class="navItem"><i class="fa fa-star" aria-hidden="true"></i></li>
+      </ul>
+      
+
+    </nav>
+  </header>
+
+  <!-- main = content unique to the document; strictly informative -->
+  <main> 
+  
+    <div class="container">
+      
+      <div class="sidebarNav">
+        <sidebar>
+          <h1>IPA API</h1>  
+        <h4 class="instructions">Customize the beer menu by filtering your favorite flavor profiles.</h4>
+        <form>
+        <label>Filter by tag: <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </label>
+        <input type="text"
+                class="inputField"
+                id="flavorParameter"
+                name="flavorParameter"
+                value="pale ale"
+                placeholder="bubblegum, citrus ..." >
+        <button type="button" id="beerMe" class="submitBtn"><i class="fa fa-beer" aria-hidden="true"></i> Beer me </button>
+      </form>
+        <small><a href="">Or, browse the whole menu.</a></small>
+        
+        </sidebar>
+      </div>
+	    
+
+    <div id="root">
+    </div>
+
+    </div>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="scripts/main.js" > </script>
+
+  </body>
+</html>
