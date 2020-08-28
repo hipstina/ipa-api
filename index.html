@@ -17,7 +17,7 @@
 
     <!-- FACEBOOK -->
     <meta property="og:title" content="Home"/>
-    <meta property="og:description" content="Christina Padilla is a front-end developer that makes beautiful accessible user interfaces"/>
+    <meta property="og:description" content="Christina Padilla is a front-end developer that makes beautiful, accessible websites"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="" />
     <meta property="og:image" content="" /> 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:creator" content="@hipstina"/>
     <meta name="twitter:title" content="Home"/>
-    <meta name="twitter:description" content="Christina Padilla is a front-end developer that makes beautiful accessible user interfaces"/>
+    <meta name="twitter:description" content="Christina Padilla is a front-end developer that makes beautiful, accessible websites"/>
 
     <!-- TITLE -->
     <title>Christina Padilla • Front-end Developer • Chicago, IL</title>
@@ -71,20 +71,46 @@
       
       <div class="sidebarNav">
         <sidebar>
-          <h1>IPA API</h1>  
-        <h4 class="instructions">Customize the beer menu by filtering your favorite flavor profiles.</h4>
-        <form>
-        <label>Filter by tag: <i class="fa fa-info-circle" aria-hidden="true"></i>
-        </label>
-        <input type="text"
-                class="inputField"
-                id="flavorParameter"
-                name="flavorParameter"
-                
-                placeholder="bubblegum, citrus ..." >
-        <button type="button" id="beerMe" class="submitBtn"><i class="fa fa-beer" aria-hidden="true"></i> Beer me </button>
-      </form>
-        <small><a href="">Or, browse the whole menu.</a></small>
+          <h1 class="main-title">IPA API</h1>  
+          <!-- <h3 class="">Full beer menu</h3> -->
+          <div class="inst-wrapper">
+          <h4 class="instructions">Explore the full beer menu </h4>
+        </div>
+          <button type="button" id="beerMe" class="submitBtn"><i class="fa fa-beer" aria-hidden="true"></i>  Beer Menu </button>
+        <div class="inst-wrapper">
+        <h4 class="instructions">Filter by style </h4>
+        <i class="fa fa-info-circle" aria-hidden="true"></i></div>
+        
+        <button type="button" id="ipa" class="submitTag style">IPA</button>
+        <button type="button" id="wheat" class="submitTag style">Lager</button>
+        <button type="button" id="pale_ale" class="submitTag style">Pale Ale</button>
+        <button type="button" id="pilsner" class="submitTag style">Pilsner</button>
+        <button type="button" id="porter" class="submitTag style">Porter</button>
+        <button type="button" id="saison" class="submitTag style">Saison</button>
+        <button type="button" id="seasonal" class="submitTag style">Seasonal</button>
+        <button type="button" id="stout" class="submitTag style">Stout</button>
+        
+
+        <div class="inst-wrapper">
+        <h4 class="instructions">Filter by flavor profile </h4>
+        <i class="fa fa-info-circle" aria-hidden="true"></i></div>
+        <button type="button" id="hop" class="submitTag flavor">Hoppy & Bitter</button>
+        <button type="button" id="malt" class="submitTag flavor">Malty & Sweet</button>
+        <button type="button" id="citrusy" class="submitTag flavor">Bright & Citrusy</button>
+        <button type="button" id="chocolate" class="submitTag flavor">Dark & Roasty</button>
+        <button type="button" id="tartfunky" class="submitTag flavor">Tart & Funky</button>
+        <button type="button" id="lager" class="submitTag flavor">Light & Crisp</button>
+        <button type="button" id="experimental" class="submitTag flavor">Experimental</button>
+       
+    
+
+      <div class="inst-wrapper">
+        <h4 class="instructions">Or let our bartender pick for you </h4> 
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+      </div>     
+        <button type="button" id="bartender" class="submitBtn"><i class="fa fa-random" aria-hidden="true"></i> Beer me </button>
+      
+        <!-- <small><a href="">Or, browse the whole menu.</a></small> -->
         
         </sidebar>
       </div>
