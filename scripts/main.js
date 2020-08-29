@@ -41,6 +41,8 @@ function wipeMenu(e) {
         constructURL = `https://api.punkapi.com/v2/beers?pages=1&per_page=80`;
     } else if (e.target.id == "citrusy") {
         constructURL = `https://api.punkapi.com/v2/beers?ids=89|142|233|237|256|262|310`;
+    } else if (e.target.id == "seasonal") {
+        constructURL = `https://api.punkapi.com/v2/beers?ids=98|130|156`;
     } else if (e.target.id == "tartfunky") {
         constructURL = `https://api.punkapi.com/v2/beers?ids=3|19|35|94|143|151|160|169|193|299`;
     } else if (e.target.id == "experimental") {

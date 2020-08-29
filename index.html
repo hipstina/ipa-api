@@ -55,12 +55,8 @@
   <header>
     <nav >
       <ul class="mainNav">
-        <li class="navItem"><i class="fa fa-search" aria-hidden="true"></i></li>
-        <li class="navItem"><i class="fa fa-random" aria-hidden="true"></i></li>
-        <li class="navItem"><i class="fa fa-star" aria-hidden="true"></i></li>
+        <li id="up" class="navItem"><i class="fa fa-arrow-up" aria-hidden="true"></i></li>
       </ul>
-      
-
     </nav>
   </header>
 
@@ -80,43 +76,162 @@
         <div class="inst-wrapper">
         <h4 class="instructions">Filter by style </h4>
         <i class="fa fa-info-circle" aria-hidden="true"></i></div>
-        
-        <button type="button" id="ipa" class="submitTag style">IPA</button>
-        <button type="button" id="wheat" class="submitTag style">Lager</button>
-        <button type="button" id="pale_ale" class="submitTag style">Pale Ale</button>
-        <button type="button" id="pilsner" class="submitTag style">Pilsner</button>
-        <button type="button" id="porter" class="submitTag style">Porter</button>
-        <button type="button" id="saison" class="submitTag style">Saison</button>
-        <button type="button" id="seasonal" class="submitTag style">Seasonal</button>
-        <button type="button" id="stout" class="submitTag style">Stout</button>
-        
+        <div class="tagWrap">
+
+          <div class="inputWrap hidden">
+            <label for="none" class=" hidden">None</label>
+            <input type="radio" id="none" name="filter" class="hidden submitTag style" checked>
+          </div>
+
+          <div class="inputWrap">
+            <label for="ipa" class=" ">IPA</label>
+            <input type="radio" id="ipa" name="filter" class="submitTag style" >
+          </div>
+          
+          <div class="inputWrap">
+            <label for="wheat" class=" ">Lager</label>
+            <input type="radio" id="wheat" name="filter" class="submitTag style" >
+          </div>
+          
+          <div class="inputWrap">
+            <label for="pale_ale" class=" ">Pale Ale</label>
+            <input type="radio" id="pale_ale" name="filter" class="submitTag style" >
+          </div>
+          
+          <div class="inputWrap">
+            <label for="pilsner" class=" ">Pilsner</label>
+            <input type="radio" id="pilsner" name="filter" class="submitTag style" >
+          </div>
+          
+          <div class="inputWrap">
+            <label for="porter" class=" ">Porter</label>
+            <input type="radio" id="porter" name="filter" class="submitTag style">
+          </div>
+          
+          <div class="inputWrap">
+            <label for="ipa" class=" ">Saison</label>
+            <input type="radio" id="saison" name="filter" class="submitTag style" >
+          </div>
+          
+          <div class="inputWrap">
+            <label for="seasonal" class=" ">Seasonal</label>
+            <input type="radio" id="seasonal" name="filter" class="submitTag style">
+          </div>
+          
+          <div class="inputWrap">
+            <label for="stout" class=" ">Stout</label>
+            <input type="radio" id="stout" name="filter" class="submitTag style" >
+          </div>
+
+        </div>
 
         <div class="inst-wrapper">
         <h4 class="instructions">Filter by flavor profile </h4>
         <i class="fa fa-info-circle" aria-hidden="true"></i></div>
-        <button type="button" id="hop" class="submitTag flavor">Hoppy & Bitter</button>
-        <button type="button" id="malt" class="submitTag flavor">Malty & Sweet</button>
-        <button type="button" id="citrusy" class="submitTag flavor">Bright & Citrusy</button>
-        <button type="button" id="chocolate" class="submitTag flavor">Dark & Roasty</button>
-        <button type="button" id="tartfunky" class="submitTag flavor">Tart & Funky</button>
-        <button type="button" id="lager" class="submitTag flavor">Light & Crisp</button>
-        <button type="button" id="experimental" class="submitTag flavor">Experimental</button>
-       
-    
+
+        <div  class="tagWrap">
+
+          <div class="inputWrap">
+            <label for="hop" class=" ">Hoppy & Bitter</label>
+            <input type="radio" id="hop" name="filter" class="submitTag flavor" >
+          </div>
+
+          <div class="inputWrap">
+            <label for="malt" class=" ">Malty & Sweet</label>
+            <input type="radio" id="malt" name="filter" class="submitTag flavor" >
+          </div>
+
+          <div class="inputWrap">
+            <label for="citrusy" class=" ">Bright & Citrusy</label>
+            <input type="radio" id="citrusy" name="filter" class="submitTag flavor" >
+          </div>
+
+          <div class="inputWrap">
+            <label for="chocolate" class=" ">Dark & Roasty</label>
+            <input type="radio" id="chocolate" name="filter" class="submitTag flavor">
+          </div>
+
+          <div class="inputWrap">
+            <label for="tartfunky" class=" ">Tart & Funky</label>
+            <input type="radio" id="tartfunky" name="filter" class="submitTag flavor" >
+          </div>
+
+          <div class="inputWrap">
+            <label for="lager" class=" ">Light & Crisp</label>
+            <input type="radio" id="lager" name="filter" class="submitTag flavor" >
+          </div>
+
+          <div class="inputWrap">
+            <label for="experimental" class=" ">Experimental</label>
+            <input type="radio" id="experimental" name="filter" class="submitTag flavor " >
+          </div>
+
+      </div>
+      <div class="inst-wrapper">
+        <h4 class="instructions">ABV %</h4> 
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+      </div>
+        <div class="sliderWrap">
+          <div class="slider">
+            
+            <div class="sliderFob"><input type="range" min="0" max="16" value="1" class="slider" id="myRange"></div>
+          </div>
+          <div class="sliderLabels">
+            <p class="sliderLabel">Lower</p>
+            <p class="sliderLabel">Higher</p>
+          </div>
+        </div>
+      
+
+      <div class="inst-wrapper">
+        <h4 class="instructions">IBU</h4> 
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+      </div>
+        <div class="sliderWrap">
+          <div class="slider">
+            <div class="sliderFob"></div>
+          </div>
+          <div class="sliderLabels">
+            <p class="sliderLabel">Less bitter</p>
+            <p class="sliderLabel">More bitter</p>
+          </div>
+        </div>
+     
+
+      <!-- <div class="inst-wrapper">
+        <h4 class="instructions">EBC</h4> 
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+      </div>
+        <div class="sliderWrap">
+          <div class="slider"></div>
+          <div class="sliderLabel">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+        </div> -->
+      
 
       <div class="inst-wrapper">
         <h4 class="instructions">Or let the bartender order for you </h4> 
         <i class="fa fa-info-circle" aria-hidden="true"></i>
       </div>     
-        <button type="button" id="bartender" class="submitBtn"><i class="fa fa-random" aria-hidden="true"></i> Beer me </button>
+        <button type="button" id="bartender" class="submitBtnEnd submitBtn"><i class="fa fa-random" aria-hidden="true"></i> Beer me </button>
       
         <!-- <small><a href="">Or, browse the whole menu.</a></small> -->
         
         </sidebar>
       </div>
+
+      
 	    
 
-    <div id="root">
+    <div id="root"> 
     </div>
 
     </div>
