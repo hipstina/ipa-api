@@ -63,19 +63,87 @@ a:visited {
 .main-title {
     letter-spacing: 1.2rem; 
     text-align: center; 
-    margin: 2vh 0 15vh 0;
+    margin: 0 0  100px 0;
+    padding: 0;
     font-size: 4rem;
 }   
+
+header {
+    display: flex;
+    justify-content: flex-end;
+}
 
 .mainNav {
     display: flex;
     flex-flow: row nowrap;
-    max-width: 1000px;
+    height: 120px;
+    width: 500px;
     justify-content: flex-end;
-    margin: 0px 120px 30px auto;
+    align-content: center;
+    margin: 30px 0  60px 0;
+    padding: 0;
     font-size: 30px;
     color: #2c2c23;
    }
+
+.tag-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    width: 0 auto;
+    height: auto;
+    margin: 20px 0 0 458px;
+    justify-content: start;
+}
+
+   .tag {
+       position: relative;
+       color: #2c2c23;
+       border: 1px solid #ccaa00;
+       background: #ccaa00;
+       border-radius: 1.5em;
+       padding: 5px 20px 5px 15px;
+       text-align: center;
+       margin: 15px;
+       min-width: 70px;
+    //    max-height: 35px;
+       font-size: 1em;
+       font-weight: 500;
+       text-transform: lowercase;
+       letter-spacing: .1em;
+       cursor: pointer;
+    //    transition: scale .05s linear;
+   }
+   
+   .fa-times {
+       margin: 5px 7px;
+   }
+
+
+   .tag:hover {
+       background: #2c2c23;
+       border-color:#2c2c23;
+       color: #fff2da;
+   }
+   
+   .tag:focus {
+    background: #ccaa00;
+    border-color:#2c2c23;
+    box-shadow: 0 0 0  5px orangered;
+   
+    color: #fff2da
+}
+
+.tag:active {
+    background: #a06700;
+    border-color:  #a06700;
+    color: #fff2da;
+    // scale: 0.9;
+}
+
+.tag-text {
+    padding: 0 0 0 15px;
+    font-size: .75em;
+}
 
 .navItem {
     position: fixed;
@@ -96,23 +164,29 @@ a:visited {
 
 .inst-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-flow: row nowrap;
     align-content: baseline;
-    margin: 60px 0 0 0;
-    padding: 30px 0;
+    margin: 30px 0 0 0;
+    padding: 30px 5px 15px 5px;
+    // background: #fff2da;
+    border: none;
+    border-top: 0.5px solid #99948b;
+    width: auto;
 }
 
 .inst-wrapper i {
     color: #99948b;
+    margin: 0 15px  0 15px;
 }
 
 .instructions {
-    margin: 0 0 0 0 ;
+    margin: 0;
+    padding: 0;
     color: #fff2da;
-    letter-spacing: 1px;
-    width: 70%;
-    font-size: 1.2em;
+    letter-spacing: .1em;
+    font-size: 1em;
+    text-transform: uppercase;
 }
 
 div > .submitTag {
@@ -151,6 +225,12 @@ div > .submitTag {
     border: 10px solid #fff2da;
   }
 
+  .allFilter {
+      text-transform: lowercase;
+      color: #d18a06;
+
+  }
+
   .inputWrap:focus {
     outline: 2px solid #e9c721;
     // outline-offset: .1em .3rem;
@@ -172,10 +252,10 @@ label {
     // line-height: 32px;
     margin: 0;
     padding: 0;
-    text-transform: uppercase;
-    font-size: .9rem;
-    font-weight: lighter;
-    letter-spacing: .2em;
+    text-transform: lowercase;
+    font-size: 1em;
+    font-weight: normal;
+    letter-spacing: .1em;
 }
 
 
@@ -184,9 +264,8 @@ label {
 // }
 
 .tagWrap {
-    margin: 0 10px ;
-    padding: 0;
-    height: 100%;
+    margin: 0 0 45px 0 ;
+    padding: 0 ;
 }
 
 .submitTag:hover {
@@ -212,7 +291,7 @@ label {
     max-width: 700px;
     justify-content: space-between;
     padding: 30px 0 ;
-    margin: 60px 15px;
+    margin: 60px ;
     // border: 1px dashed red;
 }
 
@@ -222,12 +301,15 @@ label {
     }
 
     .sidebarNav {
+        display: flex;
+        justify-content: center;
+        align-content: flex-start;
         position: fixed;
         top: 0;
         left: 0;
         overflow-y:scroll;
         overflow-x:hidden;
-        min-height: 1200px;
+        min-height: 1400px;
     }
     
 }
@@ -235,7 +317,7 @@ label {
 @media only screen and (min-width: 1200px) {
     .container{ 
         max-width: 100%;
-        margin: 60px auto;
+        margin: 100px auto;
     }
 
     .mainNav {
@@ -247,10 +329,10 @@ label {
 .sidebarNav {
     min-width: 320px;
     max-width: 320px;
-    padding: 60px 30px;
-    margin: 0 ;
+    padding: 30px 30px 100px 30px;
+    margin: 0 0 100px 0;
     border: 1px solid rgb(44,44,35);
-    min-height: 100vh;
+    height: 100%;
     // max-height: 100vh;
     background: #2c2c23; 
     color: #fff2da;
@@ -262,7 +344,7 @@ label {
     .sidebarNav {
         overflow-y: visible;  
         min-height: 100vh;
-        max-height: 100%;
+        // max-height: 200%;
     }
 }
 
@@ -411,24 +493,23 @@ label {
 }
 
 .submitBtn {
-    display: block;
-    width: 80%;
+    // display: inline;
+    background:  #2c2c23;
+    border: 1px solid #2c2c23;
+    width: auto;
+    height: 40px;
     text-transform: uppercase;
     font-size: .8rem;
     letter-spacing: 2px;
-    background:  #ccaa00;
-    color: #2c2c23;
-    border: 1px solid #2c2c23;
+    color: #fff2da;
     border-radius: .3em;
-    padding: 17px  25px 15px 25px;
-    margin: 0 auto 15px auto;
+    padding: 10px 16px;
+    margin: 0  15px 0 0;
     transition: all ease .2s;
 }
 
-
-
 .submitBtn:active {
-    border: 1px dotted #1700a0;
+    border: 1px dotted #e9c721;
     transform: scale(.9);
     
 }
@@ -440,12 +521,9 @@ label {
 }
 
 .submitBtn:focus {
-    border: 1px solid #89a000;
+    outline: 1px solid #ccaa00;
 }
 
-.submitBtnEnd {
-    margin: 0 auto 200px auto;
-}
 
 .inputField {
     background: #2c2c23;
@@ -513,7 +591,7 @@ small {
     display: flex;
     flex-flow: column;
     justify-content: space-evenly;
-    margin: 10px 0 ;
+    margin: 10px 0 150px 0;
 }
 
 .slider {
@@ -533,19 +611,22 @@ small {
 
 .slider:hover::-webkit-slider-thumb {
     opacity: 1;
-    content: "&#127866; ";
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #a06700;
+    border: 1px solid #a06700;
 }
 
 .slider::-webkit-slider-thumb {
     opacity: 1;
-    // overflow-x: scroll;
-    // overflow-y: hidden;
     cursor: pointer;
     height: 25px;
     width: 25px;
-  border-radius: 50%;
-  background: #ccaa00;
-  border: 1px solid #ccaa00;
+    border-radius: 50%;
+    background: #a06700;
+    border: 1px solid #a06700;
 }
 
 .slider-A {
@@ -562,8 +643,8 @@ small {
   border-radius: 50% 0 0 50% ;
   height: 25px;
     width: 25px;
-    background: #ccaa00;
-  border: 1px solid #ccaa00;
+    background: #a06700;
+  border: 1px solid #a06700;
 
 }
 
@@ -574,8 +655,8 @@ small {
   border-radius: 0 50% 50% 0;
   height: 25px;
     width: 25px;
-    background: #ccaa00;
-  border: 1px solid #ccaa00;
+    background: #a06700;
+  border: 1px solid #a06700;
 
 }
 
@@ -596,6 +677,7 @@ small {
     position: absolute;
     top: 75px;
     left: 125px;
+    
 }
 
 .sliderLabels {

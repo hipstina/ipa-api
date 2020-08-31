@@ -53,10 +53,14 @@
     
   <!-- navigation and header content -->
   <header>
-    <nav >
-      <button type="button" id="beerMe" class="submitBtn"><i class="fa fa-beer" aria-hidden="true"></i> Full Beer Menu </button>
-      <button type="button" id="bartender" class="submitBtnEnd submitBtn"><i class="fa fa-random" aria-hidden="true"></i> Bartender's Pick </button>    </nav>
-      <ul class="mainNav">
+    <nav class="mainNav">
+      <button type="button" id="beerMe" class="submitBtn "><i   class="fa fa-beer" aria-hidden="true"></i> Full Beer Menu </button>
+
+      <button type="button" id="random" class=" submitBtn"><i  id="rIcon" class="fa fa-random" aria-hidden="true"></i></button>    
+    </nav>
+    
+
+      <ul >
         <li id="up" class="navItem"><i class="fa fa-arrow-up" aria-hidden="true"></i></li>
       </ul>
     
@@ -64,6 +68,14 @@
 
   <!-- main = content unique to the document; strictly informative -->
   <main> 
+    <h4 class="resultsCount">Total beers that match your criteria: <span id="resultID" class="result">0</span></h4>
+
+    <div class="tag-wrapper" id="tagWrapper">
+      <!-- <p class="tag " id="tagStyleID">× <span class="tag-text" id="tag-style">hoppy & bitter</span></p>
+      <p class="tag " id="tagAbvID">× <span class="tag-text" id="tag-abv">0% — 18.5% abv</span></p>
+      <p class="tag " id="tagIbuID">× <span class="tag-text" id="tag-ibu">1 ibu — 198 ibu</span></p>
+      -->
+    </div>
   
     <div class="container">
       
@@ -71,19 +83,22 @@
         <sidebar>
           <h1 class="main-title">IPA API</h1>  
           <!-- <h3 class="">Full beer menu</h3> -->
-          <div class="inst-wrapper">
+          <!-- <div class="inst-wrapper">
           <h4 class="instructions">View the full beer menu </h4>
         </div>
-          <button type="button" id="beerMe" class="submitBtn"><i class="fa fa-beer" aria-hidden="true"></i>  Beer Menu </button>
-        <div class="inst-wrapper">
-        <h4 class="instructions">Style </h4>
-        <i class="fa fa-info-circle" aria-hidden="true"></i></div>
+          <button type="button" id="beerMe" class="submitBtn"><i class="fa fa-beer" aria-hidden="true"></i>  Beer Menu </button> -->
+          <div class="inputWrap ">
+            <label for="all" class="allFilter ">ALL BEERS</label>
+            <input type="radio" id="all" name="filter" class=" submitTag  style" checked>
+          </div>
+          <div class="inst-wrapper">
+          
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <h4 class="instructions">Beer Style </h4>
+        </div>
         <div class="tagWrap">
 
-          <div class="inputWrap ">
-            <label for="all" class=" ">ALL STYLES</label>
-            <input type="radio" id="all" name="filter" class=" submitTag style" checked>
-          </div>
+          
 
           <div class="inputWrap">
             <label for="ipa" class=" ">IPA</label>
@@ -128,8 +143,9 @@
         </div>
 
         <div class="inst-wrapper">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h4 class="instructions">Flavor profile </h4>
-        <i class="fa fa-info-circle" aria-hidden="true"></i></div>
+        </div>
 
         <div  class="tagWrap">
 
@@ -164,14 +180,15 @@
           </div>
 
           <div class="inputWrap">
-            <label for="space" class=" ">Experimental</label>
-            <input type="radio" id="space" name="filter" class="submitTag flavor " >
+            <label for="chili" class=" ">Experimental</label>
+            <input type="radio" id="chili" name="filter" class="submitTag flavor " >
           </div>
 
       </div>
       <div class="inst-wrapper">
-        <h4 class="instructions"><abbr title="Alcohol By Volume">ABV</abbr> %</h4> 
         <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <h4 class="instructions"><abbr title="Alcohol By Volume">ABV</abbr> % scale</h4> 
+       
       </div>
         <div class="sliderWrap">
           <span id="abvOutput" class="abv-output">&nbsp;</span>
@@ -185,13 +202,14 @@
       
 
       <div class="inst-wrapper">
-        <h4 class="instructions"><abbr title="International Bitterness Units">IBU</abbr></h4> 
         <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <h4 class="instructions"><abbr title="International Bitterness Units">IBU</abbr> scale</h4> 
+       
       </div>
         <div class="sliderWrap">
           <span id="ibuOutput" class="ibu-output">&nbsp;</span>
-          <input type="range" min="0" max="50" value="0" class="slider slider-A" id="ibuSliderA">
-          <input type="range" min="50" max="200" value="99" class="slider slider-B" id="ibuSliderB">
+          <input type="range" min="0" max="125" value="0" class="slider slider-A" id="ibuSliderA">
+          <input type="range" min="125" max="255" value="255" class="slider slider-B" id="ibuSliderB">
           <div class="sliderLabels">
             <p class="sliderLabel">Less bitter</p>
             <p class="sliderLabel">More bitter</p>
@@ -238,11 +256,11 @@
         </div> -->
       
 
-      <div class="inst-wrapper">
+      <!-- <div class="inst-wrapper">
         <h4 class="instructions">Bartender's choice</h4> 
         <i class="fa fa-info-circle" aria-hidden="true"></i>
       </div>     
-        <button type="button" id="bartender" class="submitBtnEnd submitBtn"><i class="fa fa-random" aria-hidden="true"></i> Beer me </button>
+        <button type="button" id="bartender" class="submitBtnEnd submitBtn"><i class="fa fa-random" aria-hidden="true"></i> Beer me </button> -->
       
         <!-- <small><a href="">Or, browse the whole menu.</a></small> -->
         

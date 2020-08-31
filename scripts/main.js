@@ -2,11 +2,18 @@
 
 
 document.getElementById("beerMe").addEventListener("click", wipeMenu);
-document.getElementById("beerMe").addEventListener("click", abvOutput);
-document.getElementById("beerMe").addEventListener("click", ibuOutput);
-document.getElementById("bartender").addEventListener("click", wipeMenu);
-document.getElementById("bartender").addEventListener("click", abvOutput);
-document.getElementById("bartender").addEventListener("click", ibuOutput);
+// document.getElementById("beerMe").addEventListener("click", abvOutput);
+// document.getElementById("beerMe").addEventListener("click", ibuOutput);
+document.getElementById("random").addEventListener("click", wipeMenu);
+// document.getElementById("random").addEventListener("click", abvOutput);
+// document.getElementById("random").addEventListener("click", ibuOutput);
+document.getElementById("rIcon").addEventListener("click", hello);
+
+function hello() {
+    console.log("HELLO")
+    return;
+}
+
 
 let abvSliderA = document.getElementById("abvSliderA");
 let abvSliderB = document.getElementById("abvSliderB");
@@ -79,8 +86,15 @@ function constructFilter(e) {
     let abvURL = `&abv_gt=` + `${Number(abvSliderA.value)}` + `&abv_lt=` + `${Number(abvSliderB.value)}`
     let ibuURL =  `&ibu_gt=` + `${Number(ibuSliderA.value)}` + `&ibu_lt=` + `${Number(ibuSliderB.value) }`;
 
-    if (e.target.id == "bartender") {
+    if (e.target.id == "random"  ) {
         fetchURL = "https://api.punkapi.com/v2/beers/random";
+        console.log(e.target.id,"LOOK")
+        return makeRequest(fetchURL);
+    }  
+
+    if (e.target.id == "rIcon"  ) {
+        fetchURL = "https://api.punkapi.com/v2/beers/random";
+        console.log(e.target.id,"LOOK HERE")
         return makeRequest(fetchURL);
     }  
 
@@ -91,8 +105,10 @@ function constructFilter(e) {
             beerfilter.forEach(fil => {
                 if (fil.checked == true && fil.id != 'all') {
                     beerStyle = `&beer_name=` + `${fil.id}`;
+                    fetchURL = `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`;
                 } 
             });
+            fetchURL = `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`;
         }  
         
     if (e.target.id == 'all') {  beerStyle =  ''; } 
@@ -105,12 +121,13 @@ function constructFilter(e) {
         e.target.id == 'hop' || e.target.id == 'malt' || 
         e.target.id == 'orange' || e.target.id == 'black' ||
         e.target.id == 'tart' || e.target.id == 'lager' ||
-        e.target.id == 'space' ) {
-            beerStyle +=  `&beer_name=` + `${e.target.id}`;
+        e.target.id == 'chili' ) {
+            beerStyle =  `&beer_name=` + `${e.target.id}`;
+            fetchURL = `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`;
         }
 
-    console.log( `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`, "end of fn" );
-    fetchURL = `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`;
+    console.log( `${fetchURL}`, "end of fn" );
+    
 
     return makeRequest(fetchURL);
 
@@ -159,34 +176,101 @@ function requestError(e) {
 }
 
 
-// function calcTotalResults(data) {
-//     // let app = document.getElementById('root');
-//         // if (app.hasChildNodes) {console.log (app.childNodes)};
-//         let resultsCount = document.createElement('h4');
-//         resultsCount.setAttribute('class','resultsCount');
-//         resultsCount.textContent = `Total beers that match your criteria: `;
-//         let result = document.createElement('span');
-//         result.setAttribute('class','result');
-//         result.textContent = `${data.length}`;
-//         resultsCount.appendChild(result);
-//         app.appendChild(resultsCount);        
-// }
 
 
+
+function buildTag() {
+
+   let tagWrapper = document.getElementById('tagWrapper');
+
+   if (!tagWrapper.hasChildNodes == false) {
+       console.log(tagWrapper.hasChildNodes);
+    tagWrapper.innerHTML = `<p class="tag " id="tagStyleID">× <span class="tag-text" id="tag-style"></span></p>
+    <p class="tag " id="tagAbvID">× <span class="tag-text" id="tag-abv"></span></p>
+    <p class="tag " id="tagIbuID">× <span class="tag-text" id="tag-ibu"></span></p>`
+   }  
+
+    let tags = document.getElementsByClassName('tag');
+    for(let tag of tags) {
+        tag.addEventListener('click', deleteTag);
+    }
+
+
+    updateTag();
+}
+
+function updateTag() {
+    let tagStyle = document.getElementsByName('filter');
+    let styleTag = document.getElementById('tag-style');
+
+    for(let style of tagStyle) {
+        style.checked? styleTag.textContent =  style.previousElementSibling.textContent : false
+    }
+
+    let abvTag = document.getElementById('tag-abv');
+    abvTag.textContent = `${Number(abvSliderA.value)}%  —  ${Number(abvSliderB.value)}% abv` ;
+
+    let ibuTag = document.getElementById('tag-ibu');
+    ibuTag.textContent = `${Number(ibuSliderA.value) + 1} IBU — ${Number(ibuSliderB.value)} IBU` ;
+
+    let tags = document.getElementsByClassName('tag');
+    for(let tag of tags) {
+        tag.addEventListener('click', deleteTag);
+    }
+}
+
+
+
+   
+function deleteTag(e) {
+    
+        if (e.target.parentNode.id == 'tagStyleID') {
+            // when style tag is deleted, 'all styles' is checked  
+            document.getElementById('tagStyleID').remove();
+            let beerStyle = document.getElementById('all');
+            beerStyle.checked = true;
+            return constructFilter(); 
+        } else if (e.target.parentNode.id == 'tagAbvID') {
+            // when abv tag is deleted, revert to default ABV  
+            document.getElementById('tagAbvID').remove();
+            let abvSliderA = document.getElementById('abvSliderA');
+            let abvSliderB = document.getElementById('abvSliderB');
+            abvSliderA.value = '0';
+            abvSliderB.value = '18.5';
+            return constructFilter(); 
+        } else if (e.target.parentNode.id == 'tagIbuID') {
+            // when ibu tag is deleted, revert to default IBU  
+            document.getElementById('tagIbuID').remove();
+            let ibuSliderA = document.getElementById('ibuSliderA');
+            let ibuSliderB = document.getElementById('ibuSliderB');
+            ibuSliderA.value = '0';
+            ibuSliderB.value = '255';
+            return constructFilter(); 
+        } else e.target.remove();
+
+        
+}
+
+function updateResults(data) {
+    let resultsCount = document.getElementById('resultID');
+    resultsCount.textContent = `${data.length}`;
+}
 
 
 function buildMenu(data) {
+    buildTag();
     
+    updateResults(data);
     let app = document.getElementById('root');
         if (app.hasChildNodes) {console.log (app.childNodes)};
-        let resultsCount = document.createElement('h4');
-        resultsCount.setAttribute('class','resultsCount');
-        resultsCount.textContent = `Total beers that match your criteria: `;
-        let result = document.createElement('span');
-        result.setAttribute('class','result');
-        result.textContent = `${data.length}`;
-        resultsCount.appendChild(result);
-        app.appendChild(resultsCount);        
+        // let resultsCount = document.createElement('h4');
+        // resultsCount.setAttribute('class','resultsCount');
+        // resultsCount.textContent = `Total beers that match your criteria: `;
+        // let result = document.createElement('span');
+        // result.setAttribute('class','result');
+        // result.textContent = `${data.length}`;
+        // resultsCount.appendChild(result);
+        // app.appendChild(resultsCount);        
 
             let beerMenu = document.createElement('div');
             beerMenu.setAttribute('class', 'beerMenu');
