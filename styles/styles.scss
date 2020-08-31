@@ -11,18 +11,6 @@
 //  [Press Ctrl-C to stop.]
 //  ------------------------------------------------------------------------
 
-//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //   
-
-//  IPA API
-
-//    To do:
-
-//    + mobile reponsive overlay window 
-//    + sidebar for larger screens    
-//    + detail overlay event on each beer
-//    + add placeholder content??       
-//
-//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  
 
 
 
@@ -213,7 +201,8 @@ label {
 }
 
 .submitTag:focus {
-    outline: 3px solid orange;
+    box-shadow: 0 0 2px 4px orange;
+    border-radius: 50px;
 }
 
 .container {
@@ -278,14 +267,25 @@ label {
 }
 
 .resultsCount {
+    display: inline;
     margin: 0;
     padding: 30px;
+    // background: #2c2c23;
+    // border: 1px solid #2c2c23;
+    border-radius: .15em;
+    color: #2c2c23;
+ 
 }   
 
-.resultsTitle {
+.result{
+    display: inline;
+    color: #2c2c23;
+    font-weight: 600;
+    font-size: 1.3em;
     margin: 0;
-    padding: 30px;
+    padding: 0 20px;
     z-index: 1;
+    letter-spacing: .2em;
 }  
 
 .beerMenu {
@@ -355,7 +355,7 @@ label {
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    // transform: translateY(-5px);
     // box-shadow: 1px 4px 6px #a06700;
     background: #fff2da;
     color: #2c2c23;
@@ -373,6 +373,7 @@ label {
     font-size: 1.9em;
     overflow-y: scroll;
     letter-spacing: .2rem; 
+    text-transform: lowercase;
 }
 
 .beer_tagline {
@@ -508,22 +509,93 @@ small {
     color: #fff2da;
 }
 .sliderWrap {
-    display: block;
-    margin: 50px 0 100px 0 ;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    margin: 10px 0 ;
 }
 
 .slider {
     display: block;
-    background: #99948b;
-    border: 1px solid #99948b;
-    border-radius: 2em;
-    height: 5px;
-    width: 250px;
+    // background: #99948b;
+    // border: 1px solid #99948b;
+    // border-radius: .15em;
+    height: 5px ;
+    width: 125px;
+    opacity: 1;
+    outline: none;
 }
 
-.sliderFob {
-    overflow-x: scroll;
-    overflow-y: hidden;
+.slider:hover {
+    opacity: 1;
+}
+
+.slider:hover::-webkit-slider-thumb {
+    opacity: 1;
+    content: "&#127866; ";
+}
+
+.slider::-webkit-slider-thumb {
+    opacity: 1;
+    // overflow-x: scroll;
+    // overflow-y: hidden;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+  border-radius: 50%;
+  background: #ccaa00;
+  border: 1px solid #ccaa00;
+}
+
+.slider-A {
+    border-radius: .15em 0 0 .15em;
+}
+
+.slider-B {
+    border-radius: 0 .15em .15em 0;
+}
+
+.slider-A::-moz-range-thumb  {
+    opacity: 1;
+    cursor: pointer;
+  border-radius: 50% 0 0 50% ;
+  height: 25px;
+    width: 25px;
+    background: #ccaa00;
+  border: 1px solid #ccaa00;
+
+}
+
+.slider-B::-moz-range-thumb  {
+    opacity: 1;
+    cursor: pointer;
+    height: 25px;
+  border-radius: 0 50% 50% 0;
+  height: 25px;
+    width: 25px;
+    background: #ccaa00;
+  border: 1px solid #ccaa00;
+
+}
+
+.slider::-moz-range-thumb::after {
+    content: "hello";
+}
+
+.slider:hover::-moz-range-thumb {
+    opacity: 1;
+}
+
+.slider-A {
+    position: absolute;
+    top: 75px;
+    left: 0;
+}
+.slider-B {
+    position: absolute;
+    top: 75px;
+    left: 125px;
 }
 
 .sliderLabels {
@@ -544,9 +616,88 @@ small {
     text-align: center;
 }
 
-.sliderFob::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #4CAF50; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+.abv-output,.ibu-output {
+    color: #e9c721;
+    font-weight: 500;
+    font-size: 1em;
+    letter-spacing: .2em;
+    text-align: center;
+    // border: 1px solid #99948b;
+    margin: 0 auto 25px auto;
+    padding: 15px 0;
+    height: 40px;
+    width: 70%;
+}
+     /* food */
+
+
+  .foodWrap {
+    width: 290px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+  .food {
+    // width: 40px;
+      display: inline-block;
+    font-size: 2em;
+    // line-height: 0;
+    // padding: 28px 14px 20px 14px;
+    // margin: 10px 8px;
+    padding: 0;
+    margin: 20px;
+    text-align: center;
+    // border: 1px solid #99948b;
+    height: 55px;
+    width: 55px;
+    // border-radius: 50%;
+    // transition: scale .1s linear;
   }
+
+  .food:hover {
+    
+      position: relative;
+    //   transition: all .6s linear;
+    //   padding: 28px 14px 26px 14px;
+    //     margin: 10px 8px;
+  }
+
+  .food:active {
+    // scale: 1.15;
+    background: #99948b;
+}
+
+.food:focus {
+    outline: 1px solid orange;
+}
+
+  .food::before {
+    content: " ";
+    font-size: .3em;
+    opacity: 0;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+    // transition: all .2s linear;
+  }
+
+  .food:hover::before {
+      content: "Pizza";
+      position: absolute;
+      left: 12px;
+      opacity: 1;
+      top: 0;
+      font-size: .3em;
+  }
+
+  .food:active::before {
+      font-size: .3em;
+  }
+
+ 
+
+
+  /* tooltips */
+
+  
+
+  
