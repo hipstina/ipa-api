@@ -2,7 +2,7 @@
 
 ![GIF](https://github.com/hipstina/ipa-api/blob/master/preview.gif)
 
-I built a simple web app built for API data. 
+I built a simple web app for filtering API data. 
 
 [View live demo of the IPA API.](https://hipstina.github.io/ipa-api/index.html)
 
