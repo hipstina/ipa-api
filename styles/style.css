@@ -110,7 +110,7 @@ header {
 .fa-arrow-up {
   font-size: 1.6em;
   font-weight: 800;
-  padding: 0 5px;
+  padding: 0 5px 20px 5px;
   color: #2c2c23;
   border: none;
   border-top: 8px solid #2c2c23;
@@ -162,7 +162,7 @@ header {
   margin: 45px 0 15px 0;
   padding: 45px 5px 15px 5px;
   border: none;
-  border-top: 0.5px solid #99948b;
+  border-top: 0.5px solid #1e1e18;
   width: auto; }
 
 .inst-wrapper i {
@@ -359,7 +359,7 @@ label {
   text-transform: lowercase; }
 
 .beer_tagline {
-  height: 25px;
+  height: 55px;
   font-family: IBM Plex Mono;
   font-size: 1em;
   font-style: italic;
@@ -460,7 +460,7 @@ small {
   position: relative;
   display: flex;
   flex-flow: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: 10px 0 60px 0; }
 
 .slider {
@@ -540,7 +540,7 @@ small {
   font-weight: lighter;
   letter-spacing: .2em;
   color: #fff2da;
-  margin: 45px 0 0 0;
+  margin: 45px 0;
   width: 50px;
   text-align: center; }
 

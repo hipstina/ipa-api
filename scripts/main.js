@@ -10,15 +10,15 @@ document.getElementById("beerMe").addEventListener("click", ibuOutput);
 
 document.getElementById("random").addEventListener("click", wipeMenu);
 document.getElementById("random").addEventListener("click", deleteTag);
-document.getElementById("random").addEventListener("click", wipeMenu);
+document.getElementById("random").addEventListener("click", resetSliders);
 document.getElementById("random").addEventListener("click", abvOutput);
 document.getElementById("random").addEventListener("click", ibuOutput);
 
-document.getElementById("random-icon").addEventListener("click", wipeMenu);
-document.getElementById("random-icon").addEventListener("click", deleteTag);
-document.getElementById("random-icon").addEventListener("click", resetSliders);
-document.getElementById("random-icon").addEventListener("click", abvOutput);
-document.getElementById("random-icon").addEventListener("click", ibuOutput);
+// document.getElementById("random-icon").addEventListener("click", wipeMenu);
+// document.getElementById("random-icon").addEventListener("click", deleteTag);
+// document.getElementById("random-icon").addEventListener("click", resetSliders);
+// document.getElementById("random-icon").addEventListener("click", abvOutput);
+// document.getElementById("random-icon").addEventListener("click", ibuOutput);
 
 
 
@@ -240,7 +240,7 @@ function deleteTag(e) {
             let beerStyle = document.getElementById('all');
             beerStyle.checked = true;
             updateTag();
-            wipeMenu(e); 
+            
         } else if (e.target.id == 'random-icon') {
 
             if (document.getElementById('tagStyleID').classList.length > 1) {
@@ -249,7 +249,7 @@ function deleteTag(e) {
             let beerStyle = document.getElementById('all');
             beerStyle.checked = true;
             updateTag();
-            wipeMenu(e); 
+            
         } else { e.target.remove();
         let beerStyle = document.getElementById('all');
             beerStyle.checked = true;
