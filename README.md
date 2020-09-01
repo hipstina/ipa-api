@@ -12,7 +12,7 @@ I built a simple web app built for API data.
 - [ ] Archived   
 
 ## Product Description
-This is a web app for filtering beers by style , ABV, and IBU. It was built in vanilla JS, HTML, and CSS. 
+This is a web app for filtering beers by style, ABV, and IBU. It was built with vanilla JS, HTML, and CSS. 
 
 I pulled data from https://punkapi.com/. PunkAPI is a free and open source project. 
 
