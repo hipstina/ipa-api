@@ -1,4 +1,4 @@
-# Title
+# The IPA API
 
 ![GIF](https://github.com/hipstina/ipa-api/blob/master/preview.gif)
 
