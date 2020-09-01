@@ -56,7 +56,7 @@ header {
   width: 500px;
   justify-content: flex-end;
   align-content: center;
-  margin: 30px 0  60px 0;
+  margin: 30px 30px  60px auto;
   padding: 0;
   font-size: 30px;
   color: #2c2c23; }
@@ -115,6 +115,19 @@ header {
   border: none;
   border-top: 8px solid #2c2c23;
   border-radius: .05em; }
+
+.fa-arrow-up:hover::after {
+  position: absolute;
+  top: 65px;
+  left: 30px;
+  content: "top";
+  z-index: 1;
+  color: #2c2c23;
+  font-family: IBM Plex Mono;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center; }
 
 .fa-arrow-up:active {
   outline: 3px solid #2c2c23;
@@ -176,6 +189,7 @@ div > .beerStyles {
   border-radius: 50%;
   width: 20px;
   height: 20px;
+  cursor: pointer;
   border: 2px solid #fff2da;
   transition: 0.1s all ease-out; }
 
@@ -199,6 +213,7 @@ label {
   color: #e9c721;
   display: inline-block;
   width: 70%;
+  cursor: pointer;
   margin: 0;
   padding: 0;
   text-transform: lowercase;
@@ -231,24 +246,24 @@ label {
   padding: 30px 0;
   margin: 60px; }
 
+.sidebarNav {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: 100%; }
+
 @media only screen and (min-width: 700px) {
   .container {
-    max-width: 100%; }
-
-  .sidebarNav {
-    display: flex;
-    justify-content: center;
-    align-content: flex-start;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    min-height: 1400px; } }
+    max-width: 100%; } }
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 100%;
-    margin: 100px auto; }
+    margin: 60px auto; }
 
   .mainNav {
     position: relative;
@@ -301,12 +316,13 @@ label {
     margin: 0 0 0 360px; } }
 @media only screen and (min-width: 1200px) {
   .beerMenu {
-    padding: 120px 0 0 0;
+    padding: 0;
     margin: 0 0 0 450px; }
 
   .resultsCount {
     margin: 0 0 0 450px; } }
 .card {
+  position: relative;
   background: #a06700;
   color: #fff2da;
   margin: 0 0 15px 30px;
@@ -314,7 +330,6 @@ label {
   border: 1px solid #fff2da;
   border-radius: 0.2em;
   max-width: 300px;
-  transition: ease all .3s;
   height: 480px; }
 
 @media only screen and (min-width: 700px) {
@@ -323,7 +338,15 @@ label {
 .card:hover {
   background: #fff2da;
   color: #2c2c23;
-  border: 1px solid #a06700; }
+  border: 1px solid #a06700;
+  transition: all .3s ease; }
+
+.card::after {
+  opacity: 0;
+  width: 0%;
+  right: 0;
+  content: "";
+  transition: opacity .3s ease; }
 
 .card p:hover {
   color: #2c2c23; }
@@ -336,13 +359,34 @@ label {
   text-transform: lowercase; }
 
 .beer_tagline {
-  height: 100px;
+  height: 25px;
   font-family: IBM Plex Mono;
   font-size: 1em;
   font-style: italic;
   overflow-y: scroll;
   color: inherit;
-  margin: 20px 0 50px 0; }
+  margin: 20px 0 5px 0; }
+
+.desc {
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin: 30px auto;
+  color: #fff2da;
+  background: #2c2c23;
+  border: 1px solid #2c2c23;
+  border-radius: .15em;
+  height: 30px;
+  width: 100%;
+  font-family: IBM Plex Sans;
+  font-size: .8em;
+  font-style: normal;
+  letter-spacing: .1em;
+  z-index: 1; }
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0; }
 
 .beer_data {
   list-style-type: none;
@@ -351,8 +395,8 @@ label {
   justify-content: space-between;
   align-self: end;
   margin: 0;
-  height: 100%;
-  padding: 0; }
+  height: auto;
+  padding: 45px  0 0 0; }
 
 .beer_data li {
   font-size: 1em;
@@ -360,7 +404,19 @@ label {
   font-family: IBM Plex Mono; }
 
 .ebc {
-  margin: 0 0 15px 0; }
+  margin: 0 0 15px 0;
+  cursor: context-menu;
+  position: relative; }
+
+.ebc:hover::after {
+  position: absolute;
+  top: -40px;
+  left: -5px;
+  content: "Beer color \|";
+  z-index: 1;
+  color: #2c2c23;
+  font-size: .6em;
+  text-align: center; }
 
 .submitBtn {
   background: #2c2c23;
@@ -389,41 +445,13 @@ label {
 .submitBtn:focus {
   outline: 1px solid #ccaa00; }
 
-.inputField {
-  background: #2c2c23;
-  border: 1px solid #fff2da;
-  border-radius: .3rem;
-  padding: 10px;
-  margin: 15px 15px 30px 0;
-  width: 180px; }
-
-.inputField::placeholder {
-  color: #fff2da;
-  font-size: .8em;
-  font-family: inherit; }
-
-.inputField[value] {
-  background-color: #2c2c23;
-  letter-spacing: 1px; }
-
-.inputField:active {
-  border: 1px solid #1700a0; }
-
-.inputField:focus {
-  border: 1px solid #a06700; }
-
-.desc {
-  text-transform: capitalize;
-  padding: 15px 0;
-  line-height: 1.6;
-  color: inherit;
-  font-family: IBM Plex Mono;
-  font-style: italic; }
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  height: 0; }
+abbr {
+  text-decoration-line: underline;
+  text-decoration-color: #fff2da;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: help; }
 
 small {
   color: #fff2da; }
@@ -528,47 +556,41 @@ small {
   width: 70%; }
 
 /* food */
-.foodWrap {
-  width: 290px;
-  margin: 0 auto;
-  padding: 0; }
-
-.food {
-  display: inline-block;
-  font-size: 2em;
-  padding: 0;
-  margin: 20px;
-  text-align: center;
-  height: 55px;
-  width: 55px; }
-
-.food:hover {
-  position: relative; }
-
-.food:active {
-  background: #99948b; }
-
-.food:focus {
-  outline: 1px solid orange; }
-
-.food::before {
-  content: " ";
-  font-size: .3em;
-  opacity: 0;
-  text-transform: uppercase;
-  letter-spacing: .2em; }
-
-.food:hover::before {
-  content: "Pizza";
-  position: absolute;
-  left: 12px;
-  opacity: 1;
-  top: 0;
-  font-size: .3em; }
-
-.food:active::before {
-  font-size: .3em; }
-
 /* tooltips */
+.fa-info-circle {
+  position: relative;
+  cursor: help; }
+
+.info:hover::after {
+  position: absolute;
+  left: 15px;
+  z-index: 1;
+  font-size: .6em;
+  font-family: IBM Plex Sans;
+  line-height: 1.6;
+  font-weight: 500;
+  text-align: center;
+  color: #2c2c23;
+  background: #fff2da;
+  border: apx solid #fff2da;
+  border-radius: .15em;
+  padding: 15px 10px;
+  width: 160px; }
+
+.info-style:hover::after {
+  top: -100px;
+  content: "BEER STYLE is a term used to differentiate and categorise beers by factors such as colour, flavour, strength, ingredients, production method, recipe, history, or origin. "; }
+
+.info-flavor:hover::after {
+  top: -70px;
+  content: "The FLAVOR PROFILE is used to describe the intensity, aroma, taste, and/or aftertaste of a beer."; }
+
+.info-abv:hover::after {
+  top: -85px;
+  content: "Alcohol by volume (ABV or alc/vol) is a standard measure of how much alcohol (ethanol) is contained in a given volume of beer."; }
+
+.info-ibu:hover::after {
+  top: -160px;
+  content: "International Bitterness Units (IBUs) are a chemical measurement of the number of bittering compounds in a beer. Generally speaking, the more IBU's, the more bitter it will taste. However, it's important to note that malt and other flavors can mask the taste of bitterness in beer. "; }
 
 /*# sourceMappingURL=style.css.map */

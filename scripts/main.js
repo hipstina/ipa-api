@@ -269,20 +269,9 @@ function updateResults(data) {
 
 
 function buildMenu(data) {
-    // buildTag();
     
     updateResults(data);
-    // buildScrollUp();
-    let app = document.getElementById('root');
-        // if (app.hasChildNodes) {console.log (app.childNodes)};
-        // let resultsCount = document.createElement('h4');
-        // resultsCount.setAttribute('class','resultsCount');
-        // resultsCount.textContent = `Total beers that match your criteria: `;
-        // let result = document.createElement('span');
-        // result.setAttribute('class','result');
-        // result.textContent = `${data.length}`;
-        // resultsCount.appendChild(result);
-        // app.appendChild(resultsCount);        
+    let app = document.getElementById('root');   
 
             let beerMenu = document.createElement('div');
             beerMenu.setAttribute('class', 'beerMenu');
@@ -317,6 +306,17 @@ function buildMenu(data) {
             // separator.setAttribute('class','line');
             // card.appendChild(separator);
 
+            const pDesc = document.createElement('button');
+            const pDescDet = document.createElement('p');
+            pDesc.setAttribute('class', 'desc hidden');
+            pDescDet.setAttribute('class', ' details hidden ');
+            beer.description = beer.description.substring(0,10);
+            pDesc.textContent = `Read More`;
+            beer.description = beer.description.substring(0, 5);
+            pDescDet.textContent = `${beer.description}...`;
+            pDesc.appendChild(pDescDet);
+            card.appendChild(pDesc);
+
             const numdata = document.createElement('ul');
             numdata.setAttribute('class','beer_data');
             
@@ -334,15 +334,8 @@ function buildMenu(data) {
             hue.style.color = `${calcBeerHue()}`;
             numdata.appendChild(hue);
             card.appendChild(numdata);
-            const pDesc = document.createElement('p');
-            const pDescDet = document.createElement('p');
-            pDesc.setAttribute('class', 'desc hidden');
-            pDescDet.setAttribute('class', 'desc details');
-            beer.description = beer.description.substring(0,45);
-            pDesc.textContent = `${beer.description}...`;
-            beer.description += beer.description.substring(100,300);
-            
-            // card.appendChild(pDesc);
+          
+
         function calcBeerHue() {
             if (beer.ebc < 7) {
                 hue.style.color = "#f8eba7"; // l.blonde
@@ -368,10 +361,6 @@ function buildMenu(data) {
         return;
 
 }
-
-
-    // upArrow.addEventListener('click', buildScrollUp);
-
 
 
 window.addEventListener('scroll', buildScrollUp);
