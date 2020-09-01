@@ -5,14 +5,10 @@ document.getElementById("beerMe").addEventListener("click", wipeMenu);
 // document.getElementById("beerMe").addEventListener("click", abvOutput);
 // document.getElementById("beerMe").addEventListener("click", ibuOutput);
 document.getElementById("random").addEventListener("click", wipeMenu);
+document.getElementById("random-icon").addEventListener("click", wipeMenu);
 // document.getElementById("random").addEventListener("click", abvOutput);
 // document.getElementById("random").addEventListener("click", ibuOutput);
-document.getElementById("rIcon").addEventListener("click", hello);
 
-function hello() {
-    console.log("HELLO")
-    return;
-}
 
 
 let abvSliderA = document.getElementById("abvSliderA");
@@ -35,7 +31,7 @@ ibuSliderB.addEventListener("mouseup",wipeMenu);
 ibuSliderB.addEventListener("mouseup",ibuOutput);
 ibuSliderB.addEventListener("mouseup",abvOutput);
 
-let beerFilters = document.getElementsByClassName("submitTag");
+let beerFilters = document.getElementsByClassName("beerStyles");
 
 for(let filter of beerFilters)  {
     document.getElementById(filter.id).addEventListener("click", wipeMenu);
@@ -54,24 +50,10 @@ function ibuOutput() {
     document.getElementById('ibuOutput').textContent = `${Number(ibuSliderA.value) + 1} — ${Number(ibuSliderB.value)} IBUs` ;
 }
 
-
-
-let foodLabel = document.getElementsByClassName('food');
-for(let food of foodLabel) {
-    food.addEventListener('mouseover',foodOutput);
-}
-
-    // foodLabel.forEach(food => console.log(food))
-
-    function foodOutput(e) {
-    console.log(e.target.id)
-    
-    };
-
-
 let xhr;
 
 function wipeMenu(e) {
+    
     let root = document.getElementById("root");
     while (root.hasChildNodes()) {
         root.removeChild(root.firstChild) 
@@ -81,58 +63,70 @@ function wipeMenu(e) {
 }
 
 function constructFilter(e) {
-    let fetchURL = 'https://api.punkapi.com/v2/beers?page=1&per_page=80';
-    let beerStyle = '';
-    let abvURL = `&abv_gt=` + `${Number(abvSliderA.value)}` + `&abv_lt=` + `${Number(abvSliderB.value)}`
-    let ibuURL =  `&ibu_gt=` + `${Number(ibuSliderA.value)}` + `&ibu_lt=` + `${Number(ibuSliderB.value) }`;
-
-    if (e.target.id == "random"  ) {
-        fetchURL = "https://api.punkapi.com/v2/beers/random";
-        console.log(e.target.id,"LOOK")
-        return makeRequest(fetchURL);
-    }  
-
-    if (e.target.id == "rIcon"  ) {
-        fetchURL = "https://api.punkapi.com/v2/beers/random";
-        console.log(e.target.id,"LOOK HERE")
-        return makeRequest(fetchURL);
-    }  
-
-    if (e.target.id == 'abvSliderA' || e.target.id == 'abvSliderB' ||
-        e.target.id == 'ibuSliderA' || e.target.id == 'ibuSliderB') {
-            let beerfilter = document.getElementsByName('filter');
-            // find which beerStyle is checked everytime slider is changed
-            beerfilter.forEach(fil => {
-                if (fil.checked == true && fil.id != 'all') {
-                    beerStyle = `&beer_name=` + `${fil.id}`;
-                    fetchURL = `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`;
-                } 
-            });
-            fetchURL = `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`;
-        }  
-        
-    if (e.target.id == 'all') {  beerStyle =  ''; } 
-    else if (e.target.id == 'beerMe') {  beerStyle = ''; } 
-    
-    if (e.target.id == 'ipa' || e.target.id == 'wheat' ||
-        e.target.id == 'pale_ale' || e.target.id == 'pilsner' ||
-        e.target.id == 'porter' || e.target.id == 'saison' ||
-        e.target.id == 'christmas' || e.target.id == 'stout' ||
-        e.target.id == 'hop' || e.target.id == 'malt' || 
-        e.target.id == 'orange' || e.target.id == 'black' ||
-        e.target.id == 'tart' || e.target.id == 'lager' ||
-        e.target.id == 'chili' ) {
-            beerStyle =  `&beer_name=` + `${e.target.id}`;
-            fetchURL = `${fetchURL}` + `${abvURL}` + `${ibuURL}` + `${beerStyle}`;
-        }
-
-    console.log( `${fetchURL}`, "end of fn" );
-    
-
-    return makeRequest(fetchURL);
-
+    let baseURL = `https://api.punkapi.com/v2/beers?&per_page=80`;
+    let randomURL = `https://api.punkapi.com/v2/beers/random`
+    // console.log(e.target.id, "CHECK TARGET ID");
+    if (e == undefined) {
+        return checkBeerStyle();
+    } else if (e.target.id == 'random') {
+        console.log(baseURL,'this is the random fetchURL');
+        makeRequest(randomURL);
+        return;
+    } else if (e.target.id == 'random-icon') {
+        console.log(baseURL,'this is the random fetchURL');
+        makeRequest(randomURL);
+        return;
+    } else if (e.target.id == 'beerMe') {
+        console.log(baseURL,'this is the default fetchURL');
+        makeRequest(baseURL);
+        return;
+    } else {
+        checkBeerStyle();
+        // checkSliderStates();
+    }
 }
 
+function checkBeerStyle() {
+    let beerstyle;
+    let beerStyles = document.getElementsByClassName('beerStyles');
+    
+    for(let style of beerStyles) { 
+        if (style.checked) {
+            if (style.id == 'all');
+            beerstyle = '';
+            console.log(beerstyle,'this is the allbeers fetchURL');
+            return constructMultiFilter(beerstyle);
+        } else { 
+            beerstyle = `&beer_name=` + style.id;
+            console.log(beerstyle,'this is the filtered beers fetchURL');
+            return constructMultiFilter(beerstyle);
+         }
+    }
+}
+
+function constructMultiFilter(beerstyle) {
+    let baseURL = `https://api.punkapi.com/v2/beers?&per_page=80`;
+    let abv_min = `&abv_gt=` + document.getElementById('abvSliderA').value;
+    let abv_max = `&abv_lt=` + document.getElementById('abvSliderB').value;
+    let ibu_min = `&ibu_gt=` + document.getElementById('ibuSliderA').value;
+    let ibu_max = `&ibu_lt=` + document.getElementById('ibuSliderB').value;
+    
+    let abv_ibu = abv_min + abv_max + ibu_min + ibu_max;
+    let fetchURL = baseURL + beerstyle + abv_ibu;
+    console.log(fetchURL,'this is the multiFilter fetchURL');
+    buildTag();
+    makeRequest(fetchURL);
+}
+
+// function checkSliderStates() {
+//     let abv_min = `&abv_gt=` + document.getElementById('abvSliderA.value');
+//     let abv_max = `&abv_lt=` + document.getElementById('abvSliderB.value');
+//     let ibu_min = `&ibu_gt=` + document.getElementById('ibuSliderA.value');
+//     let ibu_max = `&ibu_lt=` + document.getElementById('ibuSliderB.value');
+    
+//     let abv_ibu = abv_min + abv_max + ibu_min + ibu_max;
+//     return constructMultiFilter(abv_ibu);
+// }
 
 
 function makeRequest(fetchURL) {
@@ -185,14 +179,22 @@ function buildTag() {
 
    if (!tagWrapper.hasChildNodes == false) {
        console.log(tagWrapper.hasChildNodes);
-    tagWrapper.innerHTML = `<p class="tag " id="tagStyleID">× <span class="tag-text" id="tag-style"></span></p>
-    <p class="tag " id="tagAbvID">× <span class="tag-text" id="tag-abv"></span></p>
-    <p class="tag " id="tagIbuID">× <span class="tag-text" id="tag-ibu"></span></p>`
+    tagWrapper.innerHTML = 
+    `<p class="tag " id="tagStyleID">× <span class="tag-text" id="tag-style"></span></p>
+
+    <p class="tag " id="tagAbvIDMin">× <span class="tag-text" id="tag-abv"></span></p>
+
+    <p class="tag " id="tagAbvIDMax">× <span class="tag-text" id="tag-abv-max"></span></p>
+
+    <p class="tag " id="tagIbuIDMin">× <span class="tag-text" id="tag-ibu"></span></p>
+
+    <p class="tag " id="tagIbuIDMax">× <span class="tag-text" id="tag-ibu-max"></span></p>`
    }  
 
     let tags = document.getElementsByClassName('tag');
     for(let tag of tags) {
         tag.addEventListener('click', deleteTag);
+        console.log('STYLE TAG ready to be DELETED')
     }
 
 
@@ -208,48 +210,59 @@ function updateTag() {
     }
 
     let abvTag = document.getElementById('tag-abv');
-    abvTag.textContent = `${Number(abvSliderA.value)}%  —  ${Number(abvSliderB.value)}% abv` ;
+    abvTag.textContent = `${Number(abvSliderA.value)}%` ;
 
     let ibuTag = document.getElementById('tag-ibu');
-    ibuTag.textContent = `${Number(ibuSliderA.value) + 1} IBU — ${Number(ibuSliderB.value)} IBU` ;
+    ibuTag.textContent = `${Number(ibuSliderA.value) + 1}` ;
 
-    let tags = document.getElementsByClassName('tag');
-    for(let tag of tags) {
-        tag.addEventListener('click', deleteTag);
-    }
+    let abvTagMax = document.getElementById('tag-abv-max');
+    abvTagMax.textContent = `${Number(abvSliderB.value)}%` ;
+
+    let ibuTagMax = document.getElementById('tag-ibu-max');
+    ibuTagMax.textContent = `${Number(ibuSliderB.value)}` ;
+
+    
 }
-
-
-
    
 function deleteTag(e) {
-    
+    // when tags are deleted, filters revert to defaults. No tags for defaults.
         if (e.target.parentNode.id == 'tagStyleID') {
             // when style tag is deleted, 'all styles' is checked  
             document.getElementById('tagStyleID').remove();
             let beerStyle = document.getElementById('all');
             beerStyle.checked = true;
-            return constructFilter(); 
-        } else if (e.target.parentNode.id == 'tagAbvID') {
+            console.log('STYLE TAG DELETED')
+            return wipeMenu(e); 
+        } else if (e.target.parentNode.id == 'tagAbvIDMin') {
             // when abv tag is deleted, revert to default ABV  
-            document.getElementById('tagAbvID').remove();
+            document.getElementById('tagAbvIDMin').remove();
             let abvSliderA = document.getElementById('abvSliderA');
-            let abvSliderB = document.getElementById('abvSliderB');
             abvSliderA.value = '0';
-            abvSliderB.value = '18.5';
-            return constructFilter(); 
-        } else if (e.target.parentNode.id == 'tagIbuID') {
+            return wipeMenu(); 
+        } else if (e.target.parentNode.id == 'tagAbvIDMax') {
+            // when abv tag is deleted, revert to default ABV  
+            document.getElementById('tagAbvIDMax').remove();
+            let abvSliderBMax = document.getElementById('abvSliderB');
+            abvSliderBMax.value = '18.5';
+            return wipeMenu(); 
+        } else if (e.target.parentNode.id == 'tagIbuIDMin') {
             // when ibu tag is deleted, revert to default IBU  
-            document.getElementById('tagIbuID').remove();
+            document.getElementById('tagIbuIDMin').remove();
             let ibuSliderA = document.getElementById('ibuSliderA');
-            let ibuSliderB = document.getElementById('ibuSliderB');
             ibuSliderA.value = '0';
+            return wipeMenu();; 
+        } else if (e.target.parentNode.id == 'tagIbuIDMax') {
+            // when ibu tag is deleted, revert to default IBU  
+            document.getElementById('tagIbuIDMax').remove();
+            let ibuSliderB = document.getElementById('ibuSliderB');
             ibuSliderB.value = '255';
-            return constructFilter(); 
+            return wipeMenu(); 
         } else e.target.remove();
 
         
 }
+
+
 
 function updateResults(data) {
     let resultsCount = document.getElementById('resultID');
@@ -258,9 +271,10 @@ function updateResults(data) {
 
 
 function buildMenu(data) {
-    buildTag();
+    // buildTag();
     
     updateResults(data);
+    buildScrollUp();
     let app = document.getElementById('root');
         if (app.hasChildNodes) {console.log (app.childNodes)};
         // let resultsCount = document.createElement('h4');
@@ -352,10 +366,20 @@ function buildMenu(data) {
         } 
 
         });
+
         return;
+
 }
 
 
+    // upArrow.addEventListener('click', buildScrollUp);
+
+function buildScrollUp() {
+    let upArrow = document.getElementById('up');
+    upArrow.innerHTML = `<i class="fa fa-arrow-up" aria-hidden="true"></i>`;
+
+    console.log(`${window.location}` + `#top`);
+}
 
 
 

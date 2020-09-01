@@ -31,9 +31,7 @@
     <!-- TITLE -->
     <title>Christina Padilla • Front-end Developer • Chicago, IL</title>
 
-    <!-- STYLES ( CSS | CSS minified | SCSS | Normalize/Reset ) -->
-    <link rel="stylesheet" href="styles/normalize.scss">
-    <link rel="stylesheet" href="styles/style.css">
+    
     
     
     <!-- FAVICONS ( .ico | .gif | .png )-->
@@ -41,6 +39,10 @@
 
     <!-- ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- STYLES ( CSS | CSS minified | SCSS | Normalize/Reset ) -->
+    <link rel="stylesheet" href="styles/normalize.scss">
+    <link rel="stylesheet" href="styles/style.css">
 
     <!-- FONTS ( web-safe | serif | sans-serif ) -->
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
@@ -53,28 +55,34 @@
     
   <!-- navigation and header content -->
   <header>
-    <nav class="mainNav">
+    <nav class="mainNav" id="top">
       <button type="button" id="beerMe" class="submitBtn "><i   class="fa fa-beer" aria-hidden="true"></i> Full Beer Menu </button>
 
-      <button type="button" id="random" class=" submitBtn"><i  id="rIcon" class="fa fa-random" aria-hidden="true"></i></button>    
+      <button type="button" id="random" class=" submitBtn"><i  id="random-icon" class="fa fa-random" aria-hidden="true"></i></button>    
     </nav>
     
 
       <ul >
-        <li id="up" class="navItem"><i class="fa fa-arrow-up" aria-hidden="true"></i></li>
+        <a href="#top">
+          <li id="up" class="navItem">
+            <!-- <i class="fa fa-arrow-up" aria-hidden="true"></i> -->
+          </li>
+        </a>
       </ul>
     
   </header>
 
   <!-- main = content unique to the document; strictly informative -->
   <main> 
-    <h4 class="resultsCount">Total beers that match your criteria: <span id="resultID" class="result">0</span></h4>
+    <h4 class="resultsCount">Beers found: <span id="resultID" class="result">0</span></h4>
 
     <div class="tag-wrapper" id="tagWrapper">
       <!-- <p class="tag " id="tagStyleID">× <span class="tag-text" id="tag-style">hoppy & bitter</span></p>
-      <p class="tag " id="tagAbvID">× <span class="tag-text" id="tag-abv">0% — 18.5% abv</span></p>
-      <p class="tag " id="tagIbuID">× <span class="tag-text" id="tag-ibu">1 ibu — 198 ibu</span></p>
-      -->
+      <p class="tag " id="tagAbvIDMin">× <span class="tag-text" id="tag-abv">0% — 18.5% abv</span></p>
+      <p class="tag " id="tagIbuIDMin">× <span class="tag-text" id="tag-ibu">1 ibu — 198 ibu</span></p>
+      <p class="tag " id="tagAbvIDMax">× <span class="tag-text" id="tag-abv-max"></span></p>
+      <p class="tag " id="tagIbuIDMax">× <span class="tag-text" id="tag-ibu-max"></span></p> -->
+     
     </div>
   
     <div class="container">
@@ -89,7 +97,7 @@
           <button type="button" id="beerMe" class="submitBtn"><i class="fa fa-beer" aria-hidden="true"></i>  Beer Menu </button> -->
           <div class="inputWrap ">
             <label for="all" class="allFilter ">ALL BEERS</label>
-            <input type="radio" id="all" name="filter" class=" submitTag  style" checked>
+            <input type="radio" id="all" name="filter" class=" beerStyles  style" checked>
           </div>
           <div class="inst-wrapper">
           
@@ -102,42 +110,42 @@
 
           <div class="inputWrap">
             <label for="ipa" class=" ">IPA</label>
-            <input type="radio" id="ipa" name="filter" class="submitTag style" >
+            <input type="radio" id="ipa" name="filter" class="beerStyles style" >
           </div>
           
           <div class="inputWrap">
             <label for="wheat" class=" ">Lager</label>
-            <input type="radio" id="wheat" name="filter" class="submitTag style" >
+            <input type="radio" id="wheat" name="filter" class="beerStyles style" >
           </div>
           
           <div class="inputWrap">
             <label for="pale_ale" class=" ">Pale Ale</label>
-            <input type="radio" id="pale_ale" name="filter" class="submitTag style" >
+            <input type="radio" id="pale_ale" name="filter" class="beerStyles style" >
           </div>
           
           <div class="inputWrap">
             <label for="pilsner" class=" ">Pilsner</label>
-            <input type="radio" id="pilsner" name="filter" class="submitTag style" >
+            <input type="radio" id="pilsner" name="filter" class="beerStyles style" >
           </div>
           
           <div class="inputWrap">
             <label for="porter" class=" ">Porter</label>
-            <input type="radio" id="porter" name="filter" class="submitTag style">
+            <input type="radio" id="porter" name="filter" class="beerStyles style">
           </div>
           
           <div class="inputWrap">
             <label for="saison" class=" ">Saison</label>
-            <input type="radio" id="saison" name="filter" class="submitTag style" >
+            <input type="radio" id="saison" name="filter" class="beerStyles style" >
           </div>
           
           <div class="inputWrap">
             <label for="christmas" class=" ">Seasonal</label>
-            <input type="radio" id="christmas" name="filter" class="submitTag style">
+            <input type="radio" id="christmas" name="filter" class="beerStyles style">
           </div>
           
           <div class="inputWrap">
             <label for="stout" class=" ">Stout</label>
-            <input type="radio" id="stout" name="filter" class="submitTag style" >
+            <input type="radio" id="stout" name="filter" class="beerStyles style" >
           </div>
 
         </div>
@@ -151,43 +159,43 @@
 
           <div class="inputWrap">
             <label for="hop" class=" ">Hoppy & Bitter</label>
-            <input type="radio" id="hop" name="filter" class="submitTag flavor" >
+            <input type="radio" id="hop" name="filter" class="beerStyles flavor" >
           </div>
 
           <div class="inputWrap">
             <label for="malt" class=" ">Malty & Sweet</label>
-            <input type="radio" id="malt" name="filter" class="submitTag flavor" >
+            <input type="radio" id="malt" name="filter" class="beerStyles flavor" >
           </div>
 
           <div class="inputWrap">
             <label for="orange" class=" ">Bright & Citrusy</label>
-            <input type="radio" id="orange" name="filter" class="submitTag flavor" >
+            <input type="radio" id="orange" name="filter" class="beerStyles flavor" >
           </div>
 
           <div class="inputWrap">
             <label for="black" class=" ">Dark & Roasty</label>
-            <input type="radio" id="black" name="filter" class="submitTag flavor">
+            <input type="radio" id="black" name="filter" class="beerStyles flavor">
           </div>
 
           <div class="inputWrap">
             <label for="tart" class=" ">Tart & Funky</label>
-            <input type="radio" id="tart" name="filter" class="submitTag flavor" >
+            <input type="radio" id="tart" name="filter" class="beerStyles flavor" >
           </div>
 
           <div class="inputWrap">
             <label for="lager" class=" ">Light & Crisp</label>
-            <input type="radio" id="lager" name="filter" class="submitTag flavor" >
+            <input type="radio" id="lager" name="filter" class="beerStyles flavor" >
           </div>
 
           <div class="inputWrap">
             <label for="chili" class=" ">Experimental</label>
-            <input type="radio" id="chili" name="filter" class="submitTag flavor " >
+            <input type="radio" id="chili" name="filter" class="beerStyles flavor " >
           </div>
 
       </div>
       <div class="inst-wrapper">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
-        <h4 class="instructions"><abbr title="Alcohol By Volume">ABV</abbr> % scale</h4> 
+        <h4 class="instructions"><abbr title="Alcohol By Volume">ABV</abbr>% scale</h4> 
        
       </div>
         <div class="sliderWrap">
@@ -195,8 +203,8 @@
             <input type="range" min="0" max="9.5" value="0" class="slider slider-A" id="abvSliderA" >
             <input type="range" min="9.5" max="18.5" value="18.5" class="slider slider-B" id="abvSliderB" >
           <div class="sliderLabels">
-            <p class="sliderLabel">Lower</p>
-            <p class="sliderLabel">Higher</p>
+            <p class="sliderLabel">Min</p>
+            <p class="sliderLabel">Max</p>
           </div>
         </div>
       
@@ -212,7 +220,7 @@
           <input type="range" min="125" max="255" value="255" class="slider slider-B" id="ibuSliderB">
           <div class="sliderLabels">
             <p class="sliderLabel">Less bitter</p>
-            <p class="sliderLabel">More bitter</p>
+            <p class="sliderLabel">Bitterer</p>
           </div>
         </div>
 

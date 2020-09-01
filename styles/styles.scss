@@ -97,7 +97,7 @@ header {
 
    .tag {
        position: relative;
-       color: #2c2c23;
+       color: darken(#ccaa00,30%);
        border: 1px solid #ccaa00;
        background: #ccaa00;
        border-radius: 1.5em;
@@ -117,20 +117,27 @@ header {
    .fa-times {
        margin: 5px 7px;
    }
+   .tag-text {
+    padding: 0 0 0 10px;
+    font-size: .75em;
+    
+}
 
 
-   .tag:hover {
-       background: #2c2c23;
-       border-color:#2c2c23;
-       color: #fff2da;
-   }
+
    
-   .tag:focus {
-    background: #ccaa00;
-    border-color:#2c2c23;
-    box-shadow: 0 0 0  5px orangered;
+.tag:hover {
+    background: #b34a00;
+    border-color:#b34a00;
+    color: #fff2da;
+}
    
-    color: #fff2da
+.tag:focus {
+background: #ccaa00;
+border-color:#2c2c23;
+box-shadow: 0 0 0  5px orangered;
+
+// color: #fff2da
 }
 
 .tag:active {
@@ -140,35 +147,47 @@ header {
     // scale: 0.9;
 }
 
-.tag-text {
-    padding: 0 0 0 15px;
-    font-size: .75em;
+.fa-arrow-up {
+    font-size: 1.5em;
+    color: #2c2c23;
+}
+
+.fa-arrow-up:active {
+    outline: 3px solid #2c2c23;
+}
+
+.fa-arrow-up:focus {
+    outline: 3px solid orange;
 }
 
 .navItem {
     position: fixed;
-    bottom: 80px;
+    bottom: 100px;
     right: 120px;
     display: inline;
     justify-content: flex-end;
     list-style: none;
-    padding: 0;
+    padding: 15px;
     margin: 0;
+    font-size: 1.5em;
     z-index: 1;
     transition: scale .2s linear;
+    color: #2c2c23;
 }
 
 .navItem:hover {
     scale: 1.3;
 }
 
+
+
 .inst-wrapper {
     display: flex;
     justify-content: flex-start;
     flex-flow: row nowrap;
     align-content: baseline;
-    margin: 30px 0 0 0;
-    padding: 30px 5px 15px 5px;
+    margin: 45px 0 15px 0;
+    padding: 45px 5px 15px 5px;
     // background: #fff2da;
     border: none;
     border-top: 0.5px solid #99948b;
@@ -189,11 +208,11 @@ header {
     text-transform: uppercase;
 }
 
-div > .submitTag {
+div > .beerStyles {
     margin: 15px 0;
 }
 
-.submitTag {
+.beerStyles {
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -221,7 +240,7 @@ div > .submitTag {
 //     height: 40px;
 }
 
-.submitTag:checked {
+.beerStyles:checked {
     border: 10px solid #fff2da;
   }
 
@@ -268,18 +287,18 @@ label {
     padding: 0 ;
 }
 
-.submitTag:hover {
+.beerStyles:hover {
     background: #99948b;
     color: white;
 }
 
-.submitTag:active {
+.beerStyles:active {
     transform: scale(.9);
     font-weight: 600;
     
 }
 
-.submitTag:focus {
+.beerStyles:focus {
     box-shadow: 0 0 2px 4px orange;
     border-radius: 50px;
 }
@@ -506,6 +525,7 @@ label {
     padding: 10px 16px;
     margin: 0  15px 0 0;
     transition: all ease .2s;
+    cursor: pointer;
 }
 
 .submitBtn:active {
@@ -591,7 +611,7 @@ small {
     display: flex;
     flex-flow: column;
     justify-content: space-evenly;
-    margin: 10px 0 150px 0;
+    margin: 10px 0 60px 0;
 }
 
 .slider {
@@ -601,7 +621,7 @@ small {
     // border-radius: .15em;
     height: 5px ;
     width: 125px;
-    opacity: 1;
+    opacity: .7;
     outline: none;
 }
 
@@ -629,13 +649,7 @@ small {
     border: 1px solid #a06700;
 }
 
-.slider-A {
-    border-radius: .15em 0 0 .15em;
-}
 
-.slider-B {
-    border-radius: 0 .15em .15em 0;
-}
 
 .slider-A::-moz-range-thumb  {
     opacity: 1;
@@ -669,11 +683,13 @@ small {
 }
 
 .slider-A {
+    border-radius: .15em 0 0 .15em;
     position: absolute;
     top: 75px;
     left: 0;
 }
 .slider-B {
+    border-radius: 0 .15em .15em 0;
     position: absolute;
     top: 75px;
     left: 125px;
