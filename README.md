@@ -30,7 +30,6 @@ At this point, I am basically done with this project. However, I can't help myse
  - I want to add a button to each card that triggers an overlay of the beer description. I would need to query the correct DOM elements to trigger a sibling element , or something like that. 
  - I also want to make the sidebarMenu toggle into and out of view, so that the app works well on mobile too. 
 
-This was a really fun and practical little project! I learned a lot and feel ready to try something a little more challenging. Cracking open a cold one now 🍺
 
 ## Takeaways
 In total I spent about 4-5 days on this application.
@@ -45,3 +44,5 @@ Some of the JS/browser technology concepts I got to apply in this project includ
 + building tools to filter and sort API data from the client-side
 + linking form inputs to event handlers
 + event delegation, bubbling, hoisting, call stacks, template literals, navigating the DOM...
+
+This was a really fun and practical little project! I learned a lot and feel ready to try something a little more challenging. Cracking open a cold one now 🍺
