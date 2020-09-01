@@ -1,13 +1,24 @@
 'use strict';
 
+document.addEventListener("DOMContentLoaded", constructFilter);
 
 document.getElementById("beerMe").addEventListener("click", wipeMenu);
-// document.getElementById("beerMe").addEventListener("click", abvOutput);
-// document.getElementById("beerMe").addEventListener("click", ibuOutput);
+document.getElementById("beerMe").addEventListener("click", deleteTag);
+document.getElementById("beerMe").addEventListener("click", resetSliders);
+document.getElementById("beerMe").addEventListener("click", abvOutput);
+document.getElementById("beerMe").addEventListener("click", ibuOutput);
+
 document.getElementById("random").addEventListener("click", wipeMenu);
+document.getElementById("random").addEventListener("click", deleteTag);
+document.getElementById("random").addEventListener("click", wipeMenu);
+document.getElementById("random").addEventListener("click", abvOutput);
+document.getElementById("random").addEventListener("click", ibuOutput);
+
 document.getElementById("random-icon").addEventListener("click", wipeMenu);
-// document.getElementById("random").addEventListener("click", abvOutput);
-// document.getElementById("random").addEventListener("click", ibuOutput);
+document.getElementById("random-icon").addEventListener("click", deleteTag);
+document.getElementById("random-icon").addEventListener("click", resetSliders);
+document.getElementById("random-icon").addEventListener("click", abvOutput);
+document.getElementById("random-icon").addEventListener("click", ibuOutput);
 
 
 
@@ -69,16 +80,14 @@ function constructFilter(e) {
     if (e == undefined) {
         return checkBeerStyle();
     } else if (e.target.id == 'random') {
-        console.log(baseURL,'this is the random fetchURL');
         makeRequest(randomURL);
         return;
     } else if (e.target.id == 'random-icon') {
-        console.log(baseURL,'this is the random fetchURL');
         makeRequest(randomURL);
         return;
     } else if (e.target.id == 'beerMe') {
-        console.log(baseURL,'this is the default fetchURL');
         makeRequest(baseURL);
+        // checkBeerStyle();
         return;
     } else {
         checkBeerStyle();
@@ -88,20 +97,25 @@ function constructFilter(e) {
 
 function checkBeerStyle() {
     let beerstyle;
+    let style;
     let beerStyles = document.getElementsByClassName('beerStyles');
-    
-    for(let style of beerStyles) { 
-        if (style.checked) {
-            if (style.id == 'all');
-            beerstyle = '';
-            console.log(beerstyle,'this is the allbeers fetchURL');
-            return constructMultiFilter(beerstyle);
-        } else { 
-            beerstyle = `&beer_name=` + style.id;
-            console.log(beerstyle,'this is the filtered beers fetchURL');
-            return constructMultiFilter(beerstyle);
-         }
+
+    let keys = Object.keys(beerStyles); 
+        keys.forEach(key => {
+            if (beerStyles[key].checked == true) {
+                style = beerStyles[key].id;
+                // return beerstyle;
+            } 
+        });
+
+    if (style == 'all') {
+        beerstyle = '';
+        return constructMultiFilter(beerstyle);
+    } else {
+        beerstyle = `&beer_name=` + style;
+        return constructMultiFilter(beerstyle);
     }
+    
 }
 
 function constructMultiFilter(beerstyle) {
@@ -113,21 +127,9 @@ function constructMultiFilter(beerstyle) {
     
     let abv_ibu = abv_min + abv_max + ibu_min + ibu_max;
     let fetchURL = baseURL + beerstyle + abv_ibu;
-    console.log(fetchURL,'this is the multiFilter fetchURL');
-    buildTag();
+    buildStyleTag();
     makeRequest(fetchURL);
 }
-
-// function checkSliderStates() {
-//     let abv_min = `&abv_gt=` + document.getElementById('abvSliderA.value');
-//     let abv_max = `&abv_lt=` + document.getElementById('abvSliderB.value');
-//     let ibu_min = `&ibu_gt=` + document.getElementById('ibuSliderA.value');
-//     let ibu_max = `&ibu_lt=` + document.getElementById('ibuSliderB.value');
-    
-//     let abv_ibu = abv_min + abv_max + ibu_min + ibu_max;
-//     return constructMultiFilter(abv_ibu);
-// }
-
 
 function makeRequest(fetchURL) {
     xhr = new XMLHttpRequest();
@@ -145,8 +147,6 @@ function makeRequest(fetchURL) {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 
                 const data = JSON.parse(this.response); 
-                console.log(data);
-                // calcTotalResults(data);
                 buildMenu(data);
                
             } 
@@ -170,59 +170,48 @@ function requestError(e) {
 }
 
 
+function resetSliders() {
+    abvSliderA.value = 0;
+    abvSliderB.value = 18.5;
 
+    ibuSliderA.value = 0;
+    ibuSliderB.value = 255;
 
+    // abvOutput();
+    // ibuOutput();
+}
 
-function buildTag() {
+function buildStyleTag() {
 
    let tagWrapper = document.getElementById('tagWrapper');
 
    if (!tagWrapper.hasChildNodes == false) {
-       console.log(tagWrapper.hasChildNodes);
     tagWrapper.innerHTML = 
     `<p class="tag " id="tagStyleID">× <span class="tag-text" id="tag-style"></span></p>
-
-    <p class="tag " id="tagAbvIDMin">× <span class="tag-text" id="tag-abv"></span></p>
-
-    <p class="tag " id="tagAbvIDMax">× <span class="tag-text" id="tag-abv-max"></span></p>
-
-    <p class="tag " id="tagIbuIDMin">× <span class="tag-text" id="tag-ibu"></span></p>
-
-    <p class="tag " id="tagIbuIDMax">× <span class="tag-text" id="tag-ibu-max"></span></p>`
+    
+    `
    }  
 
     let tags = document.getElementsByClassName('tag');
-    for(let tag of tags) {
-        tag.addEventListener('click', deleteTag);
-        console.log('STYLE TAG ready to be DELETED')
-    }
-
-
+        tags[0].addEventListener('click', deleteTag);
+    
     updateTag();
 }
 
 function updateTag() {
     let tagStyle = document.getElementsByName('filter');
     let styleTag = document.getElementById('tag-style');
-
+    
     for(let style of tagStyle) {
-        style.checked? styleTag.textContent =  style.previousElementSibling.textContent : false
+        style.checked ? styleTag.textContent =  style.previousElementSibling.textContent : false;
     }
 
-    let abvTag = document.getElementById('tag-abv');
-    abvTag.textContent = `${Number(abvSliderA.value)}%` ;
-
-    let ibuTag = document.getElementById('tag-ibu');
-    ibuTag.textContent = `${Number(ibuSliderA.value) + 1}` ;
-
-    let abvTagMax = document.getElementById('tag-abv-max');
-    abvTagMax.textContent = `${Number(abvSliderB.value)}%` ;
-
-    let ibuTagMax = document.getElementById('tag-ibu-max');
-    ibuTagMax.textContent = `${Number(ibuSliderB.value)}` ;
-
-    
+    if (styleTag.textContent == "ALL BEERS") {
+        let allTag = document.getElementById('tagStyleID');
+        allTag.classList.add('hidden');
+    }
 }
+
    
 function deleteTag(e) {
     // when tags are deleted, filters revert to defaults. No tags for defaults.
@@ -231,33 +220,42 @@ function deleteTag(e) {
             document.getElementById('tagStyleID').remove();
             let beerStyle = document.getElementById('all');
             beerStyle.checked = true;
-            console.log('STYLE TAG DELETED')
+
             return wipeMenu(e); 
-        } else if (e.target.parentNode.id == 'tagAbvIDMin') {
-            // when abv tag is deleted, revert to default ABV  
-            document.getElementById('tagAbvIDMin').remove();
-            let abvSliderA = document.getElementById('abvSliderA');
-            abvSliderA.value = '0';
-            return wipeMenu(); 
-        } else if (e.target.parentNode.id == 'tagAbvIDMax') {
-            // when abv tag is deleted, revert to default ABV  
-            document.getElementById('tagAbvIDMax').remove();
-            let abvSliderBMax = document.getElementById('abvSliderB');
-            abvSliderBMax.value = '18.5';
-            return wipeMenu(); 
-        } else if (e.target.parentNode.id == 'tagIbuIDMin') {
-            // when ibu tag is deleted, revert to default IBU  
-            document.getElementById('tagIbuIDMin').remove();
-            let ibuSliderA = document.getElementById('ibuSliderA');
-            ibuSliderA.value = '0';
-            return wipeMenu();; 
-        } else if (e.target.parentNode.id == 'tagIbuIDMax') {
-            // when ibu tag is deleted, revert to default IBU  
-            document.getElementById('tagIbuIDMax').remove();
-            let ibuSliderB = document.getElementById('ibuSliderB');
-            ibuSliderB.value = '255';
-            return wipeMenu(); 
-        } else e.target.remove();
+        } else if (e.target.id == 'beerMe') {
+            // if the 'all' tag is being hidden, that means the classList is >1.
+            // and so there's no need to delete the tag
+            if (document.getElementById('tagStyleID').classList.length > 1) {
+                return;
+            }
+            
+            let beerStyle = document.getElementById('all');
+            beerStyle.checked = true;
+            updateTag();
+            wipeMenu(e); 
+        } else if (e.target.id == 'random') {
+            if (document.getElementById('tagStyleID').classList.length > 1) {
+                return;
+            }
+            let beerStyle = document.getElementById('all');
+            beerStyle.checked = true;
+            updateTag();
+            wipeMenu(e); 
+        } else if (e.target.id == 'random-icon') {
+
+            if (document.getElementById('tagStyleID').classList.length > 1) {
+                return;
+            }
+            let beerStyle = document.getElementById('all');
+            beerStyle.checked = true;
+            updateTag();
+            wipeMenu(e); 
+        } else { e.target.remove();
+        let beerStyle = document.getElementById('all');
+            beerStyle.checked = true;
+
+            wipeMenu(e); 
+        }
 
         
 }
@@ -274,9 +272,9 @@ function buildMenu(data) {
     // buildTag();
     
     updateResults(data);
-    buildScrollUp();
+    // buildScrollUp();
     let app = document.getElementById('root');
-        if (app.hasChildNodes) {console.log (app.childNodes)};
+        // if (app.hasChildNodes) {console.log (app.childNodes)};
         // let resultsCount = document.createElement('h4');
         // resultsCount.setAttribute('class','resultsCount');
         // resultsCount.textContent = `Total beers that match your criteria: `;
@@ -374,11 +372,23 @@ function buildMenu(data) {
 
     // upArrow.addEventListener('click', buildScrollUp);
 
-function buildScrollUp() {
-    let upArrow = document.getElementById('up');
-    upArrow.innerHTML = `<i class="fa fa-arrow-up" aria-hidden="true"></i>`;
 
-    console.log(`${window.location}` + `#top`);
+
+window.addEventListener('scroll', buildScrollUp);
+
+function buildScrollUp() {
+    let scrollPosition = window.scrollY;
+    if (scrollPosition > 300 ) {
+        
+        let upArrow = document.getElementById('up');
+        upArrow.classList.remove('hidden');
+        
+
+    } else if (scrollPosition < 300) {
+        let upArrowRemove = document.getElementById('up');
+        upArrowRemove.classList.add('hidden');
+        
+    }
 }
 
 

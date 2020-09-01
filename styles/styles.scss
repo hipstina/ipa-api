@@ -148,16 +148,23 @@ box-shadow: 0 0 0  5px orangered;
 }
 
 .fa-arrow-up {
-    font-size: 1.5em;
+    font-size: 1.6em;
+    font-weight: 800;
+    padding: 0 5px;
     color: #2c2c23;
+    border: none;
+    border-top: 8px solid #2c2c23;
+    border-radius: .05em;
 }
 
 .fa-arrow-up:active {
     outline: 3px solid #2c2c23;
+    outline-offset: 3px;
 }
 
 .fa-arrow-up:focus {
     outline: 3px solid orange;
+    outline-offset: 3px;
 }
 
 .navItem {
@@ -176,7 +183,7 @@ box-shadow: 0 0 0  5px orangered;
 }
 
 .navItem:hover {
-    scale: 1.3;
+    scale: 1.05;
 }
 
 
