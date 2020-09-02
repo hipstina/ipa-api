@@ -22,6 +22,10 @@ I pulled data from https://punkapi.com/. PunkAPI is a free and open source proje
 - CSS (& SCSS)
 - JavaScript/ES6
 
+## Getting Started
+```zsh
+$ git clone https://github.com/hipstina/ipa-api
+```
 ## Contributing
  `coming soon` 
 
