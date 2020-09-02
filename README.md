@@ -1,6 +1,6 @@
 # The IPA API
 
-![GIF](https://github.com/hipstina/ipa-api/blob/master/preview.gif)
+<img src="https://github.com/hipstina/ipa-api/blob/master/preview.png" width="500px" alt="Preivew of IPA API web app showing 12 beer results">
 
 I built a simple web app for filtering API data. 
 
