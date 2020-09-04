@@ -516,17 +516,20 @@ label {
 .beer_name {
     height: 150px;
     font-size: 1.9em;
-    overflow-y: scroll;
+    overflow: hidden;
     letter-spacing: .2rem; 
     text-transform: lowercase;
+
+    // width: 300px;
+  
 }
 
 .beer_tagline {
-    height: 55px;
+    height: 75px;
     font-family: IBM Plex Mono;
     font-size: 1em;
     font-style: italic;
-    overflow-y: scroll;
+    overflow: hidden;
     color: inherit;
     margin: 20px 0 5px 0 ;
 }
@@ -565,7 +568,7 @@ label {
     align-self: end;
     margin: 0;
     height: auto;
-    padding: 45px  0 0 0;
+    padding: 5px  0 0 0;
 }
 
 .beer_data li {
